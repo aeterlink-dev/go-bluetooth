@@ -48,6 +48,11 @@ func (a *Adapter1) OnDeviceDiscovered() (chan *DeviceDiscovered, func(), error) 
 		for v := range signal {
 
 			if v == nil {
+				if ch != nil {
+					close(ch)
+				}
+				ch = nil
+				log.Trace("OnDeviceDiscovered: cancel() called")
 				return
 			}
 
@@ -95,11 +100,6 @@ func (a *Adapter1) OnDeviceDiscovered() (chan *DeviceDiscovered, func(), error) 
 
 	cancel := func() {
 		omSignalCancel()
-		if ch != nil {
-			close(ch)
-		}
-		ch = nil
-		log.Trace("OnDeviceDiscovered: cancel() called")
 	}
 
 	return ch, cancel, nil
