@@ -3,8 +3,8 @@ package bluez
 import (
 	"reflect"
 
+	"github.com/aeterlink-dev/go-bluetooth/util"
 	"github.com/godbus/dbus/v5"
-	"github.com/muka/go-bluetooth/util"
 	log "github.com/sirupsen/logrus"
 )
 

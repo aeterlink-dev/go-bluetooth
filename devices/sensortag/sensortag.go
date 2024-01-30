@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/aeterlink-dev/go-bluetooth/bluez/profile/device"
+	"github.com/aeterlink-dev/go-bluetooth/bluez/profile/gatt"
 	"github.com/godbus/dbus/v5"
-	"github.com/muka/go-bluetooth/bluez/profile/device"
-	"github.com/muka/go-bluetooth/bluez/profile/gatt"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -74,7 +74,7 @@ var sensorTagUUIDs = map[string]string{
 	"MANUFACTURER_NAME_UUID":  "2A29",
 }
 
-//SensorTagDataEvent contains SensorTagSpecific data structure
+// SensorTagDataEvent contains SensorTagSpecific data structure
 type SensorTagDataEvent struct {
 	Device     *device.Device1
 	SensorType string
@@ -117,7 +117,7 @@ type SensorTagDataEvent struct {
 	Model           string
 }
 
-//Period =[Input*10]ms,(lowerlimit 300 ms, max 2500ms),default 1000 ms
+// Period =[Input*10]ms,(lowerlimit 300 ms, max 2500ms),default 1000 ms
 const (
 	TemperaturePeriodHigh   = 0x32  // 500 ms,
 	TemperaturePeriodMedium = 0x64  // 1000 ms,
@@ -138,7 +138,7 @@ func getDeviceInfoUUID(name string) string {
 	return "0000" + sensorTagUUIDs[name] + "-0000-1000-8000-00805F9B34FB"
 }
 
-//retryCall n. times, sleep millis, callback
+// retryCall n. times, sleep millis, callback
 func retryCall(times int, sleep int64, fn func() (interface{}, error)) (intf interface{}, err error) {
 	for i := 0; i < times; i++ {
 		intf, err = fn()
@@ -150,7 +150,7 @@ func retryCall(times int, sleep int64, fn func() (interface{}, error)) (intf int
 	return nil, err
 }
 
-//NewSensorTag creates a new sensortag instance
+// NewSensorTag creates a new sensortag instance
 func NewSensorTag(d *device.Device1) (*SensorTag, error) {
 
 	if !d.Properties.Connected {
@@ -230,7 +230,7 @@ func NewSensorTag(d *device.Device1) (*SensorTag, error) {
 	return s, nil
 }
 
-//SensorTag a SensorTag object representation
+// SensorTag a SensorTag object representation
 type SensorTag struct {
 	*device.Device1
 	dataChannel chan *SensorTagDataEvent
@@ -246,7 +246,7 @@ func (s *SensorTag) Data() chan *SensorTagDataEvent {
 	return s.dataChannel
 }
 
-//Sensor generic sensor interface
+// Sensor generic sensor interface
 type Sensor interface {
 	GetName() string
 	IsEnabled() (bool, error)
@@ -303,7 +303,7 @@ func newDeviceInfo(tag *SensorTag) (SensorTagDeviceInfo, error) {
 	return loadChars()
 }
 
-//SensorTagDeviceInfo sensorTag structure
+// SensorTagDeviceInfo sensorTag structure
 type SensorTagDeviceInfo struct {
 	tag              *SensorTag
 	firmwareInfo     *gatt.GattCharacteristic1
@@ -312,7 +312,7 @@ type SensorTagDeviceInfo struct {
 	modelInfo        *gatt.GattCharacteristic1
 }
 
-//Read device info from sensorTag
+// Read device info from sensorTag
 func (s *SensorTagDeviceInfo) Read() (*SensorTagDataEvent, error) {
 
 	options1 := getOptions()

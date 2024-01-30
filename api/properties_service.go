@@ -1,13 +1,13 @@
 package api
 
 import (
+	"github.com/aeterlink-dev/go-bluetooth/bluez"
+	"github.com/aeterlink-dev/go-bluetooth/bluez/profile"
+	"github.com/aeterlink-dev/go-bluetooth/props"
 	"github.com/fatih/structs"
 	"github.com/godbus/dbus/v5"
 	"github.com/godbus/dbus/v5/introspect"
 	"github.com/godbus/dbus/v5/prop"
-	"github.com/muka/go-bluetooth/bluez"
-	"github.com/muka/go-bluetooth/bluez/profile"
-	"github.com/muka/go-bluetooth/props"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -60,19 +60,19 @@ func (p *DBusProperties) onChange(ev *prop.Change) *dbus.Error {
 	return nil
 }
 
-//Instance return the props instance
+// Instance return the props instance
 func (p *DBusProperties) Instance() *prop.Properties {
 	return p.instance
 }
 
-//Introspection return the props instance
+// Introspection return the props instance
 func (p *DBusProperties) Introspection(iface string) []introspect.Property {
 	res := p.instance.Introspection(iface)
 	// log.Debug("Introspect", res)
 	return res
 }
 
-//Expose expose the properties interface
+// Expose expose the properties interface
 func (p *DBusProperties) Expose(path dbus.ObjectPath) {
 	propsConfig := make(map[string]map[string]*prop.Prop)
 	for iface1, props1 := range p.propsConfig {
@@ -88,13 +88,13 @@ func (p *DBusProperties) Expose(path dbus.ObjectPath) {
 	p.instance = prop.New(p.conn, path, propsConfig)
 }
 
-//AddProperties add a property set
+// AddProperties add a property set
 func (p *DBusProperties) AddProperties(iface string, props bluez.Properties) error {
 	p.props[iface] = props
 	return p.parseProperties()
 }
 
-//RemoveProperties remove a property set
+// RemoveProperties remove a property set
 func (p *DBusProperties) RemoveProperties(iface string) {
 	delete(p.props, iface)
 	delete(p.propsConfig, iface)

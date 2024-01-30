@@ -5,10 +5,10 @@ import (
 	"encoding/binary"
 	"errors"
 
-	"github.com/muka/go-bluetooth/bluez/profile/gatt"
+	"github.com/aeterlink-dev/go-bluetooth/bluez/profile/gatt"
 )
 
-//getting config,data,period characteristics for BAROMETRIC sensor
+// getting config,data,period characteristics for BAROMETRIC sensor
 func newBarometricSensor(tag *SensorTag) (*BarometricSensor, error) {
 
 	dev := tag.Device1
@@ -55,7 +55,7 @@ func newBarometricSensor(tag *SensorTag) (*BarometricSensor, error) {
 	return i.(*BarometricSensor), err
 }
 
-//BarometricSensor structure
+// BarometricSensor structure
 type BarometricSensor struct {
 	tag    *SensorTag
 	cfg    *gatt.GattCharacteristic1
@@ -63,12 +63,12 @@ type BarometricSensor struct {
 	period *gatt.GattCharacteristic1
 }
 
-//GetName return the sensor name
+// GetName return the sensor name
 func (s BarometricSensor) GetName() string {
 	return "pressure"
 }
 
-//Enable barometric measurements
+// Enable barometric measurements
 func (s *BarometricSensor) Enable() error {
 	enabled, err := s.IsEnabled()
 	if err != nil {
@@ -85,7 +85,7 @@ func (s *BarometricSensor) Enable() error {
 	return nil
 }
 
-//Disable barometric measurements
+// Disable barometric measurements
 func (s *BarometricSensor) Disable() error {
 	enabled, err := s.IsEnabled()
 	if err != nil {
@@ -102,7 +102,7 @@ func (s *BarometricSensor) Disable() error {
 	return nil
 }
 
-//IsEnabled check if BarometricSensor measurements are enabled
+// IsEnabled check if BarometricSensor measurements are enabled
 func (s *BarometricSensor) IsEnabled() (bool, error) {
 	options := getOptions()
 
@@ -120,7 +120,7 @@ func (s *BarometricSensor) IsEnabled() (bool, error) {
 	return (enabled == 1), nil
 }
 
-//IsNotifying check if BarometricSensor sensors are Notifying
+// IsNotifying check if BarometricSensor sensors are Notifying
 func (s *BarometricSensor) IsNotifying() (bool, error) {
 	n, err := s.data.GetProperty("Notifying")
 	if err != nil {
@@ -130,7 +130,7 @@ func (s *BarometricSensor) IsNotifying() (bool, error) {
 	return n.Value().(bool), nil
 }
 
-//Read value from the BarometricSensor sensors
+// Read value from the BarometricSensor sensors
 func (s *BarometricSensor) Read() (float64, error) {
 
 	err := s.Enable()
@@ -151,7 +151,7 @@ func (s *BarometricSensor) Read() (float64, error) {
 	return ambientValue, err
 }
 
-//StartNotify enable BarometricSensorDataChannel
+// StartNotify enable BarometricSensorDataChannel
 func (s *BarometricSensor) StartNotify(macAddress string) error {
 
 	err := s.Enable()
@@ -208,7 +208,7 @@ func (s *BarometricSensor) StartNotify(macAddress string) error {
 	return nil
 }
 
-//StopNotify disable Barometric Sensor DataChannel
+// StopNotify disable Barometric Sensor DataChannel
 func (s *BarometricSensor) StopNotify() error {
 
 	err := s.Disable()

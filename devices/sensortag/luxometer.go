@@ -5,7 +5,7 @@ import (
 	"encoding/binary"
 	"errors"
 
-	"github.com/muka/go-bluetooth/bluez/profile/gatt"
+	"github.com/aeterlink-dev/go-bluetooth/bluez/profile/gatt"
 )
 
 //Luxometer Sensor..
@@ -58,7 +58,7 @@ func newLuxometerSensor(tag *SensorTag) (*LuxometerSensor, error) {
 	return i.(*LuxometerSensor), err
 }
 
-//LuxometerSensor sensor structure
+// LuxometerSensor sensor structure
 type LuxometerSensor struct {
 	tag    *SensorTag
 	cfg    *gatt.GattCharacteristic1
@@ -66,12 +66,12 @@ type LuxometerSensor struct {
 	period *gatt.GattCharacteristic1
 }
 
-//GetName return the sensor name
+// GetName return the sensor name
 func (s LuxometerSensor) GetName() string {
 	return "luxometer"
 }
 
-//Enable LuxometerSensor measurements
+// Enable LuxometerSensor measurements
 func (s *LuxometerSensor) Enable() error {
 	enabled, err := s.IsEnabled()
 	if err != nil {
@@ -88,7 +88,7 @@ func (s *LuxometerSensor) Enable() error {
 	return nil
 }
 
-//Disable LuxometerSensor measurements
+// Disable LuxometerSensor measurements
 func (s *LuxometerSensor) Disable() error {
 	enabled, err := s.IsEnabled()
 	if err != nil {
@@ -105,7 +105,7 @@ func (s *LuxometerSensor) Disable() error {
 	return nil
 }
 
-//IsEnabled check if LuxometerSensor measurements are enabled
+// IsEnabled check if LuxometerSensor measurements are enabled
 func (s *LuxometerSensor) IsEnabled() (bool, error) {
 
 	options := getOptions()
@@ -123,7 +123,7 @@ func (s *LuxometerSensor) IsEnabled() (bool, error) {
 	return (enabled == 1), nil
 }
 
-//IsNotifying check if LuxometerSensor sensors are Notifying
+// IsNotifying check if LuxometerSensor sensors are Notifying
 func (s *LuxometerSensor) IsNotifying() (bool, error) {
 	n, err := s.data.GetProperty("Notifying")
 	if err != nil {
@@ -132,7 +132,7 @@ func (s *LuxometerSensor) IsNotifying() (bool, error) {
 	return n.Value().(bool), nil
 }
 
-//Read value from the LuxometerSensor sensors
+// Read value from the LuxometerSensor sensors
 func (s *LuxometerSensor) Read() (float64, error) {
 
 	err := s.Enable()
@@ -153,7 +153,7 @@ func (s *LuxometerSensor) Read() (float64, error) {
 	return ambientValue, err
 }
 
-//StartNotify enable LuxometerSensorDataChannel
+// StartNotify enable LuxometerSensorDataChannel
 func (s *LuxometerSensor) StartNotify(macAddress string) error {
 
 	err := s.Enable()
@@ -204,7 +204,7 @@ func (s *LuxometerSensor) StartNotify(macAddress string) error {
 	return nil
 }
 
-//StopNotify disable Luxometer Sensor DataChannel
+// StopNotify disable Luxometer Sensor DataChannel
 func (s *LuxometerSensor) StopNotify() error {
 
 	err := s.Disable()

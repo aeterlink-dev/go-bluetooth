@@ -3,7 +3,7 @@ package service_example
 import (
 	"os"
 
-	"github.com/muka/go-bluetooth/hw"
+	"github.com/aeterlink-dev/go-bluetooth/hw"
 	log "github.com/sirupsen/logrus"
 )
 

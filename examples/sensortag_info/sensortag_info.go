@@ -13,9 +13,9 @@ package sensortag_info_example
 import (
 	"fmt"
 
-	"github.com/muka/go-bluetooth/api"
-	"github.com/muka/go-bluetooth/bluez/profile/battery"
-	"github.com/muka/go-bluetooth/devices/sensortag"
+	"github.com/aeterlink-dev/go-bluetooth/api"
+	"github.com/aeterlink-dev/go-bluetooth/bluez/profile/battery"
+	"github.com/aeterlink-dev/go-bluetooth/devices/sensortag"
 	log "github.com/sirupsen/logrus"
 )
 

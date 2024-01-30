@@ -5,7 +5,7 @@ import (
 	"encoding/hex"
 	"strings"
 
-	"github.com/muka/go-bluetooth/bluez/profile/advertising"
+	"github.com/aeterlink-dev/go-bluetooth/bluez/profile/advertising"
 	eddystone "github.com/suapapa/go_eddystone"
 )
 

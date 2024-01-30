@@ -1,10 +1,10 @@
 package adapter
 
 import (
-	"github.com/muka/go-bluetooth/bluez/profile/gatt"
+	"github.com/aeterlink-dev/go-bluetooth/bluez/profile/gatt"
 )
 
-//GetGattManager return a GattManager1 instance
+// GetGattManager return a GattManager1 instance
 func (a *Adapter1) GetGattManager() (*gatt.GattManager1, error) {
 	adapterID, err := ParseAdapterID(a.Path())
 	if err != nil {

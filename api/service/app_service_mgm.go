@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/aeterlink-dev/go-bluetooth/api"
+	"github.com/aeterlink-dev/go-bluetooth/bluez"
 	"github.com/godbus/dbus/v5"
-	"github.com/muka/go-bluetooth/api"
-	"github.com/muka/go-bluetooth/bluez"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -54,7 +54,7 @@ func (app *App) AddService(s *Service) error {
 	return nil
 }
 
-//RemoveService remove an exposed service
+// RemoveService remove an exposed service
 func (app *App) RemoveService(service *Service) error {
 	if _, ok := app.services[service.Path()]; !ok {
 		return nil

@@ -3,8 +3,8 @@ package agent
 import (
 	"fmt"
 
+	"github.com/aeterlink-dev/go-bluetooth/bluez/profile/adapter"
 	"github.com/godbus/dbus/v5"
-	"github.com/muka/go-bluetooth/bluez/profile/adapter"
 	log "github.com/sirupsen/logrus"
 )
 

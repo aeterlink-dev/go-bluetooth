@@ -14,7 +14,7 @@
 package cmd
 
 import (
-	hci_updown_example "github.com/muka/go-bluetooth/examples/hci_updown"
+	hci_updown_example "github.com/aeterlink-dev/go-bluetooth/examples/hci_updown"
 	"github.com/spf13/cobra"
 )
 

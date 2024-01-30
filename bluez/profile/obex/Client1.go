@@ -1,8 +1,8 @@
 package obex
 
 import (
+	"github.com/aeterlink-dev/go-bluetooth/bluez"
 	"github.com/godbus/dbus/v5"
-	"github.com/muka/go-bluetooth/bluez"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -50,7 +50,7 @@ func (a *ObexClient1) Close() {
 //	- "sync"
 //
 //	Possible errors:
-// 		- org.bluez.obex.Error.InvalidArguments
+//		- org.bluez.obex.Error.InvalidArguments
 //		- org.bluez.obex.Error.Failed
 //
 // TODO: Use ObexSession1 struct instead of generic map for options
@@ -61,12 +61,11 @@ func (a *ObexClient1) CreateSession(destination string, options map[string]inter
 	return sessionPath, err
 }
 
-//	Unregister session and abort pending transfers.
+// Unregister session and abort pending transfers.
 //
-//	Possible errors:
-//		- org.bluez.obex.Error.InvalidArguments
-//		- org.bluez.obex.Error.NotAuthorized
-//
+// Possible errors:
+//   - org.bluez.obex.Error.InvalidArguments
+//   - org.bluez.obex.Error.NotAuthorized
 func (a *ObexClient1) RemoveSession(session string) error {
 	return a.client.Call("RemoveSession", 0, dbus.ObjectPath(session)).Store()
 }

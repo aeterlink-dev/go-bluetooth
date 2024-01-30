@@ -14,7 +14,7 @@
 package cmd
 
 import (
-	sensortag_info_example "github.com/muka/go-bluetooth/examples/sensortag_info"
+	sensortag_info_example "github.com/aeterlink-dev/go-bluetooth/examples/sensortag_info"
 	"github.com/spf13/cobra"
 )
 

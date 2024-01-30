@@ -6,9 +6,9 @@ import (
 	"sync"
 
 	"github.com/godbus/dbus/v5"
-	"github.com/muka/go-bluetooth/bluez"
-	"github.com/muka/go-bluetooth/props"
-	"github.com/muka/go-bluetooth/util"
+	"github.com/aeterlink-dev/go-bluetooth/bluez"
+	"github.com/aeterlink-dev/go-bluetooth/props"
+	"github.com/aeterlink-dev/go-bluetooth/util"
 )
 
 var Input1Interface = "org.bluez.Input1"

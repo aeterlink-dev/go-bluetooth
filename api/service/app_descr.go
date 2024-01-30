@@ -1,10 +1,10 @@
 package service
 
 import (
+	"github.com/aeterlink-dev/go-bluetooth/api"
+	"github.com/aeterlink-dev/go-bluetooth/bluez"
+	"github.com/aeterlink-dev/go-bluetooth/bluez/profile/gatt"
 	"github.com/godbus/dbus/v5"
-	"github.com/muka/go-bluetooth/api"
-	"github.com/muka/go-bluetooth/bluez"
-	"github.com/muka/go-bluetooth/bluez/profile/gatt"
 )
 
 type DescrReadCallback func(c *Descr, options map[string]interface{}) ([]byte, error)

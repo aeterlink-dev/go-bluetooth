@@ -2,13 +2,13 @@
 package api
 
 import (
-	"github.com/muka/go-bluetooth/bluez"
-	"github.com/muka/go-bluetooth/bluez/profile/adapter"
+	"github.com/aeterlink-dev/go-bluetooth/bluez"
+	"github.com/aeterlink-dev/go-bluetooth/bluez/profile/adapter"
 )
 
 var adapters = map[string]*adapter.Adapter1{}
 
-//Exit performs a clean exit
+// Exit performs a clean exit
 func Exit() error {
 
 	for _, a := range adapters {

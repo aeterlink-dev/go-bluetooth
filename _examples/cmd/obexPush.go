@@ -14,7 +14,7 @@
 package cmd
 
 import (
-	obex_push_example "github.com/muka/go-bluetooth/examples/obex_push"
+	obex_push_example "github.com/aeterlink-dev/go-bluetooth/examples/obex_push"
 	"github.com/spf13/cobra"
 )
 
