@@ -52,7 +52,6 @@ func (a *Adapter1) OnDeviceDiscovered() (chan *DeviceDiscovered, func(), error) 
 					close(ch)
 				}
 				ch = nil
-				log.Trace("OnDeviceDiscovered: cancel() called")
 				return
 			}
 
@@ -100,6 +99,7 @@ func (a *Adapter1) OnDeviceDiscovered() (chan *DeviceDiscovered, func(), error) 
 
 	cancel := func() {
 		omSignalCancel()
+		log.Trace("OnDeviceDiscovered: cancel() called")
 	}
 
 	return ch, cancel, nil
