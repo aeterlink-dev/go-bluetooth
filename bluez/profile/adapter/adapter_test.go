@@ -5,8 +5,8 @@ import (
 	"log"
 	"testing"
 
+	"github.com/aeterlink-dev/go-bluetooth/bluez"
 	"github.com/godbus/dbus/v5"
-	"github.com/muka/go-bluetooth/bluez"
 )
 
 func TestGetAdapterIDFromPath(t *testing.T) {

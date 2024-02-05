@@ -14,8 +14,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/muka/go-bluetooth/api"
-	"github.com/muka/go-bluetooth/bluez/profile/obex"
+	"github.com/aeterlink-dev/go-bluetooth/api"
+	"github.com/aeterlink-dev/go-bluetooth/bluez/profile/obex"
 	log "github.com/sirupsen/logrus"
 )
 

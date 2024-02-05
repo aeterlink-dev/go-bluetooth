@@ -1,9 +1,9 @@
 package adapter
 
 import (
+	"github.com/aeterlink-dev/go-bluetooth/bluez"
+	"github.com/aeterlink-dev/go-bluetooth/bluez/profile/device"
 	"github.com/godbus/dbus/v5"
-	"github.com/muka/go-bluetooth/bluez"
-	"github.com/muka/go-bluetooth/bluez/profile/device"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -48,6 +48,10 @@ func (a *Adapter1) OnDeviceDiscovered() (chan *DeviceDiscovered, func(), error) 
 		for v := range signal {
 
 			if v == nil {
+				if ch != nil {
+					close(ch)
+				}
+				ch = nil
 				return
 			}
 
@@ -95,10 +99,6 @@ func (a *Adapter1) OnDeviceDiscovered() (chan *DeviceDiscovered, func(), error) 
 
 	cancel := func() {
 		omSignalCancel()
-		if ch != nil {
-			close(ch)
-		}
-		ch = nil
 		log.Trace("OnDeviceDiscovered: cancel() called")
 	}
 

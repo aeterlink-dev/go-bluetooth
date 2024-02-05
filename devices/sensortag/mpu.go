@@ -6,10 +6,10 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/muka/go-bluetooth/bluez/profile/gatt"
+	"github.com/aeterlink-dev/go-bluetooth/bluez/profile/gatt"
 )
 
-//getting config,data,period characteristics for Humidity sensor
+// getting config,data,period characteristics for Humidity sensor
 func newMpuSensor(tag *SensorTag) (*MpuSensor, error) {
 
 	dev := tag.Device1
@@ -57,7 +57,7 @@ func newMpuSensor(tag *SensorTag) (*MpuSensor, error) {
 	return i.(*MpuSensor), err
 }
 
-//MpuSensor structure
+// MpuSensor structure
 type MpuSensor struct {
 	tag    *SensorTag
 	cfg    *gatt.GattCharacteristic1
@@ -65,12 +65,12 @@ type MpuSensor struct {
 	period *gatt.GattCharacteristic1
 }
 
-//GetName return's the sensor name
+// GetName return's the sensor name
 func (s MpuSensor) GetName() string {
 	return "Ac-Mg-Gy"
 }
 
-//Enable mpuSensors measurements
+// Enable mpuSensors measurements
 func (s *MpuSensor) Enable() error {
 	enabled, err := s.IsEnabled()
 	if err != nil {
@@ -87,7 +87,7 @@ func (s *MpuSensor) Enable() error {
 	return nil
 }
 
-//Disable mpuSensors measurements
+// Disable mpuSensors measurements
 func (s *MpuSensor) Disable() error {
 	enabled, err := s.IsEnabled()
 	if err != nil {
@@ -104,7 +104,7 @@ func (s *MpuSensor) Disable() error {
 	return nil
 }
 
-//IsEnabled check if mpu measurements are enabled
+// IsEnabled check if mpu measurements are enabled
 func (s *MpuSensor) IsEnabled() (bool, error) {
 	options := make(map[string]interface{})
 
@@ -122,7 +122,7 @@ func (s *MpuSensor) IsEnabled() (bool, error) {
 	return (enabled == 1), nil
 }
 
-//IsNotifying check if mpu sensors are notifying
+// IsNotifying check if mpu sensors are notifying
 func (s *MpuSensor) IsNotifying() (bool, error) {
 	n, err := s.data.GetProperty("Notifying")
 	if err != nil {
@@ -131,7 +131,7 @@ func (s *MpuSensor) IsNotifying() (bool, error) {
 	return n.Value().(bool), nil
 }
 
-//Read value from the mpu sensors
+// Read value from the mpu sensors
 func (s *MpuSensor) Read() (float64, error) {
 
 	err := s.Enable()
@@ -152,7 +152,7 @@ func (s *MpuSensor) Read() (float64, error) {
 	return ambientValue, err
 }
 
-//StartNotify enable mpuDataChannel
+// StartNotify enable mpuDataChannel
 func (s *MpuSensor) StartNotify(macAddress string) error {
 
 	err := s.Enable()
@@ -234,7 +234,7 @@ func (s *MpuSensor) StartNotify(macAddress string) error {
 	return nil
 }
 
-//StopNotify disable DataChannel for mpu sensors
+// StopNotify disable DataChannel for mpu sensors
 func (s *MpuSensor) StopNotify() error {
 
 	err := s.Disable()

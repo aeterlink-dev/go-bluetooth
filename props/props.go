@@ -4,10 +4,10 @@ import (
 	"reflect"
 	"strings"
 
+	"github.com/aeterlink-dev/go-bluetooth/bluez"
 	"github.com/fatih/structs"
 	"github.com/godbus/dbus/v5"
 	"github.com/godbus/dbus/v5/prop"
-	"github.com/muka/go-bluetooth/bluez"
 	log "github.com/sirupsen/logrus"
 )
 

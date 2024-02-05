@@ -1,7 +1,7 @@
 /**
  * This script demonstrates the increase of go routines depending on the
  * UnwatchProperties change. The code is related to
- * https://github.com/muka/go-bluetooth/issues/113 and just documents
+ * https://github.com/aeterlink-dev/go-bluetooth/issues/113 and just documents
  * the issue to see if the fix brings any value.
  *
  * Functionally this script doesn't do anything beyond connecting to a
@@ -20,8 +20,8 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/muka/go-bluetooth/api"
-	"github.com/muka/go-bluetooth/bluez/profile/gatt"
+	"github.com/aeterlink-dev/go-bluetooth/api"
+	"github.com/aeterlink-dev/go-bluetooth/bluez/profile/gatt"
 )
 
 func runWatchPropertiesTestIteration(char *gatt.GattCharacteristic1) (int, error) {

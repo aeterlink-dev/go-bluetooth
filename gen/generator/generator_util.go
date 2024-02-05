@@ -6,8 +6,8 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/muka/go-bluetooth/gen/override"
-	"github.com/muka/go-bluetooth/gen/types"
+	"github.com/aeterlink-dev/go-bluetooth/gen/override"
+	"github.com/aeterlink-dev/go-bluetooth/gen/types"
 )
 
 var TplPath = "gen/generator/tpl/%s.go.tpl"

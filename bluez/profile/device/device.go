@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/aeterlink-dev/go-bluetooth/bluez"
+	"github.com/aeterlink-dev/go-bluetooth/bluez/profile/gatt"
 	"github.com/godbus/dbus/v5"
-	"github.com/muka/go-bluetooth/bluez"
-	"github.com/muka/go-bluetooth/bluez/profile/gatt"
 )
 
 func NewDevice(adapterID string, address string) (*Device1, error) {
@@ -91,7 +91,7 @@ func (d *Device1) GetDescriptorList() ([]dbus.ObjectPath, error) {
 	return descr, nil
 }
 
-//GetDescriptors returns all descriptors for a given characteristic
+// GetDescriptors returns all descriptors for a given characteristic
 func (d *Device1) GetDescriptors(char *gatt.GattCharacteristic1) ([]*gatt.GattDescriptor1, error) {
 	descrPaths, err := d.GetDescriptorList()
 	if err != nil {
@@ -116,7 +116,7 @@ func (d *Device1) GetDescriptors(char *gatt.GattCharacteristic1) ([]*gatt.GattDe
 	return descrFound, nil
 }
 
-//GetCharacteristics return a list of characteristics
+// GetCharacteristics return a list of characteristics
 func (d *Device1) GetCharacteristics() ([]*gatt.GattCharacteristic1, error) {
 
 	list, err := d.GetCharacteristicsList()
@@ -137,7 +137,7 @@ func (d *Device1) GetCharacteristics() ([]*gatt.GattCharacteristic1, error) {
 	return chars, nil
 }
 
-//GetAllServicesAndUUID return a list of uuid's with their corresponding services
+// GetAllServicesAndUUID return a list of uuid's with their corresponding services
 func (d *Device1) GetAllServicesAndUUID() ([]string, error) {
 
 	list, err := d.GetCharacteristicsList()
@@ -168,7 +168,7 @@ func (d *Device1) GetAllServicesAndUUID() ([]string, error) {
 	return deviceFound, nil
 }
 
-//GetCharByUUID return a GattService by its uuid, return nil if not found
+// GetCharByUUID return a GattService by its uuid, return nil if not found
 func (d *Device1) GetCharByUUID(uuid string) (*gatt.GattCharacteristic1, error) {
 	devices, err := d.GetCharsByUUID(uuid)
 	if len(devices) > 0 {

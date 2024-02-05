@@ -15,7 +15,7 @@
 package cmd
 
 import (
-	agent_example "github.com/muka/go-bluetooth/examples/agent"
+	agent_example "github.com/aeterlink-dev/go-bluetooth/examples/agent"
 	"github.com/spf13/cobra"
 )
 

@@ -6,14 +6,14 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/muka/go-bluetooth/hw/linux/cmd"
+	"github.com/aeterlink-dev/go-bluetooth/hw/linux/cmd"
 )
 
 const (
 	DefaultBinPath = "btmgmt"
 )
 
-//BtAdapter contains info about adapter from btmgmt
+// BtAdapter contains info about adapter from btmgmt
 type BtAdapter struct {
 	ID                string
 	Name              string
@@ -26,7 +26,7 @@ type BtAdapter struct {
 	CurrentSettings   []string
 }
 
-//GetAdapter return an adapter
+// GetAdapter return an adapter
 func GetAdapter(adapterID string) (*BtAdapter, error) {
 	adapters, err := GetAdapters()
 	if err != nil {
@@ -40,7 +40,7 @@ func GetAdapter(adapterID string) (*BtAdapter, error) {
 	return nil, fmt.Errorf("Adapter %s not found", adapterID)
 }
 
-//GetAdapters return a list of adapters
+// GetAdapters return a list of adapters
 func GetAdapters() ([]*BtAdapter, error) {
 
 	raw, err := cmd.Exec("btmgmt", "info")

@@ -1,6 +1,6 @@
 package service
 
-import "github.com/muka/go-bluetooth/bluez/profile/agent"
+import "github.com/aeterlink-dev/go-bluetooth/bluez/profile/agent"
 
 func (app *App) createAgent() (agent.Agent1Client, error) {
 	a := agent.NewDefaultSimpleAgent()

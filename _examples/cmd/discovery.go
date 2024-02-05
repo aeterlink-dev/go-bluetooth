@@ -14,7 +14,7 @@
 package cmd
 
 import (
-	discovery_example "github.com/muka/go-bluetooth/examples/discovery"
+	discovery_example "github.com/aeterlink-dev/go-bluetooth/examples/discovery"
 	"github.com/spf13/cobra"
 )
 

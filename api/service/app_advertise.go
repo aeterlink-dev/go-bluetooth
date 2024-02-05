@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/muka/go-bluetooth/api"
-	"github.com/muka/go-bluetooth/bluez/profile/advertising"
+	"github.com/aeterlink-dev/go-bluetooth/api"
+	"github.com/aeterlink-dev/go-bluetooth/bluez/profile/advertising"
 )
 
 func (app *App) GetAdvertisement() *advertising.LEAdvertisement1Properties {

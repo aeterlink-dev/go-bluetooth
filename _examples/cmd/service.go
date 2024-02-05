@@ -14,7 +14,7 @@
 package cmd
 
 import (
-	service_example "github.com/muka/go-bluetooth/examples/service"
+	service_example "github.com/aeterlink-dev/go-bluetooth/examples/service"
 	"github.com/spf13/cobra"
 )
 

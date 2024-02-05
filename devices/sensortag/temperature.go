@@ -5,10 +5,10 @@ import (
 	"encoding/binary"
 	"fmt"
 
-	"github.com/muka/go-bluetooth/bluez/profile/gatt"
+	"github.com/aeterlink-dev/go-bluetooth/bluez/profile/gatt"
 )
 
-//.....getting config,data,period characteristics for TEMPERATURE sensor............
+// .....getting config,data,period characteristics for TEMPERATURE sensor............
 func newTemperatureSensor(tag *SensorTag) (*TemperatureSensor, error) {
 
 	dev := tag.Device1
@@ -59,7 +59,7 @@ func newTemperatureSensor(tag *SensorTag) (*TemperatureSensor, error) {
 	return i.(*TemperatureSensor), nil
 }
 
-//TemperatureSensor the temperature sensor structure
+// TemperatureSensor the temperature sensor structure
 type TemperatureSensor struct {
 	tag    *SensorTag
 	cfg    *gatt.GattCharacteristic1
@@ -72,7 +72,7 @@ func (s TemperatureSensor) GetName() string {
 	return "temperature"
 }
 
-//Enable measurements
+// Enable measurements
 func (s *TemperatureSensor) Enable() error {
 	enabled, err := s.IsEnabled()
 	if err != nil {
@@ -86,7 +86,7 @@ func (s *TemperatureSensor) Enable() error {
 	return err
 }
 
-//Disable measurements
+// Disable measurements
 func (s *TemperatureSensor) Disable() error {
 	enabled, err := s.IsEnabled()
 	if err != nil {
@@ -103,7 +103,7 @@ func (s *TemperatureSensor) Disable() error {
 	return nil
 }
 
-//IsEnabled check if measurements are enabled
+// IsEnabled check if measurements are enabled
 func (s *TemperatureSensor) IsEnabled() (bool, error) {
 
 	options := make(map[string]interface{})
@@ -122,7 +122,7 @@ func (s *TemperatureSensor) IsEnabled() (bool, error) {
 	return (enabled == 1), nil
 }
 
-//IsNotifying check if notyfing
+// IsNotifying check if notyfing
 func (s *TemperatureSensor) IsNotifying() (bool, error) {
 	n, err := s.data.GetNotifying()
 	if err != nil {
@@ -131,7 +131,7 @@ func (s *TemperatureSensor) IsNotifying() (bool, error) {
 	return n, nil
 }
 
-//Read value from the sensor
+// Read value from the sensor
 func (s *TemperatureSensor) Read() (float64, error) {
 
 	err := s.Enable()
@@ -152,7 +152,7 @@ func (s *TemperatureSensor) Read() (float64, error) {
 	return ambientValue, err
 }
 
-//StartNotify enable temperature DataChannel
+// StartNotify enable temperature DataChannel
 func (s *TemperatureSensor) StartNotify() error {
 
 	err := s.Enable()
@@ -207,7 +207,7 @@ func (s *TemperatureSensor) StartNotify() error {
 	return nil
 }
 
-//StopNotify disable temperature DataChannel
+// StopNotify disable temperature DataChannel
 func (s *TemperatureSensor) StopNotify() error {
 
 	err := s.Disable()

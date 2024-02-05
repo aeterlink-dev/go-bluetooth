@@ -1,7 +1,7 @@
 package props
 
 import (
-	"github.com/muka/go-bluetooth/bluez"
+	"github.com/aeterlink-dev/go-bluetooth/bluez"
 )
 
 // Convert a struct to map applying options from struct tag

@@ -3,8 +3,8 @@ package bluez
 import (
 	"fmt"
 
+	"github.com/aeterlink-dev/go-bluetooth/util"
 	"github.com/godbus/dbus/v5"
-	"github.com/muka/go-bluetooth/util"
 )
 
 // NewClient create a new client
@@ -25,7 +25,7 @@ func (c *Client) isConnected() bool {
 	return c.conn != nil
 }
 
-//Disconnect from DBus
+// Disconnect from DBus
 func (c *Client) Disconnect() {
 
 	// do not disconnect SystemBus
@@ -68,17 +68,17 @@ func (c *Client) Call(method string, flags dbus.Flags, args ...interface{}) *dbu
 	return c.dbusObject.Call(methodPath, flags, args...)
 }
 
-//GetConnection returns the Dbus connection
+// GetConnection returns the Dbus connection
 func (c *Client) GetConnection() *dbus.Conn {
 	return c.conn
 }
 
-//GetDbusObject returns the Dbus object
+// GetDbusObject returns the Dbus object
 func (c *Client) GetDbusObject() dbus.BusObject {
 	return c.dbusObject
 }
 
-//GetProperty return a property value
+// GetProperty return a property value
 func (c *Client) GetProperty(p string) (dbus.Variant, error) {
 	if !c.isConnected() {
 		err := c.Connect()
@@ -89,7 +89,7 @@ func (c *Client) GetProperty(p string) (dbus.Variant, error) {
 	return c.dbusObject.GetProperty(c.Config.Iface + "." + p)
 }
 
-//SetProperty set a property value
+// SetProperty set a property value
 func (c *Client) SetProperty(p string, v interface{}) error {
 	if !c.isConnected() {
 		err := c.Connect()
@@ -100,7 +100,7 @@ func (c *Client) SetProperty(p string, v interface{}) error {
 	return c.dbusObject.Call("org.freedesktop.DBus.Properties.Set", 0, c.Config.Iface, p, dbus.MakeVariant(v)).Store()
 }
 
-//GetProperties load all the properties for an interface
+// GetProperties load all the properties for an interface
 func (c *Client) GetProperties(props interface{}) error {
 
 	if !c.isConnected() {
@@ -128,7 +128,7 @@ func getMatchString(path dbus.ObjectPath, iface string) string {
 	return fmt.Sprintf("type='signal',interface='%s',path='%s'", iface, path)
 }
 
-//Register for signals
+// Register for signals
 func (c *Client) Register(path dbus.ObjectPath, iface string) (chan *dbus.Signal, error) {
 
 	if !c.isConnected() {
@@ -147,7 +147,7 @@ func (c *Client) Register(path dbus.ObjectPath, iface string) (chan *dbus.Signal
 	return channel, nil
 }
 
-//Unregister for signals
+// Unregister for signals
 func (c *Client) Unregister(path dbus.ObjectPath, iface string, signal chan *dbus.Signal) error {
 	if !c.isConnected() {
 		err := c.Connect()

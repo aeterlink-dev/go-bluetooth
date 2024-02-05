@@ -5,10 +5,10 @@ import (
 	"encoding/binary"
 	"errors"
 
-	"github.com/muka/go-bluetooth/bluez/profile/gatt"
+	"github.com/aeterlink-dev/go-bluetooth/bluez/profile/gatt"
 )
 
-//getting config,data,period characteristics for Humidity sensor
+// getting config,data,period characteristics for Humidity sensor
 func newHumiditySensor(tag *SensorTag) (*HumiditySensor, error) {
 
 	dev := tag.Device1
@@ -54,7 +54,7 @@ func newHumiditySensor(tag *SensorTag) (*HumiditySensor, error) {
 	return i.(*HumiditySensor), err
 }
 
-//HumiditySensor struct
+// HumiditySensor struct
 type HumiditySensor struct {
 	tag    *SensorTag
 	cfg    *gatt.GattCharacteristic1
@@ -62,12 +62,12 @@ type HumiditySensor struct {
 	period *gatt.GattCharacteristic1
 }
 
-//GetName return the sensor name
+// GetName return the sensor name
 func (s HumiditySensor) GetName() string {
 	return "humidity"
 }
 
-//Enable humidity measurements
+// Enable humidity measurements
 func (s *HumiditySensor) Enable() error {
 	enabled, err := s.IsEnabled()
 	if err != nil {
@@ -84,7 +84,7 @@ func (s *HumiditySensor) Enable() error {
 	return nil
 }
 
-//Disable humidity measurements
+// Disable humidity measurements
 func (s *HumiditySensor) Disable() error {
 	enabled, err := s.IsEnabled()
 	if err != nil {
@@ -119,7 +119,7 @@ func (s *HumiditySensor) IsEnabled() (bool, error) {
 	return (enabled == 1), nil
 }
 
-//IsNotifying check if humidity sensor is notyfing
+// IsNotifying check if humidity sensor is notyfing
 func (s *HumiditySensor) IsNotifying() (bool, error) {
 	n, err := s.data.GetProperty("Notifying")
 	if err != nil {
@@ -128,7 +128,7 @@ func (s *HumiditySensor) IsNotifying() (bool, error) {
 	return n.Value().(bool), nil
 }
 
-//Read value from the humidity sensor
+// Read value from the humidity sensor
 func (s *HumiditySensor) Read() (float64, error) {
 	err := s.Enable()
 	if err != nil {
@@ -148,7 +148,7 @@ func (s *HumiditySensor) Read() (float64, error) {
 	return humidValue, err
 }
 
-//StartNotify enable DataChannel for humidity
+// StartNotify enable DataChannel for humidity
 func (s *HumiditySensor) StartNotify() error {
 
 	err := s.Enable()
@@ -203,7 +203,7 @@ func (s *HumiditySensor) StartNotify() error {
 	return nil
 }
 
-//StopNotify disable DataChannel for humidity sensor
+// StopNotify disable DataChannel for humidity sensor
 func (s *HumiditySensor) StopNotify() error {
 
 	err := s.Disable()

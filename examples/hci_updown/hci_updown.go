@@ -5,11 +5,11 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/muka/go-bluetooth/hw/linux/hci"
+	"github.com/aeterlink-dev/go-bluetooth/hw/linux/hci"
 	log "github.com/sirupsen/logrus"
 )
 
-//HciUpDownExample hciconfig up / down
+// HciUpDownExample hciconfig up / down
 func Run(rawAdapterID string) error {
 
 	log.Info("Turn down")

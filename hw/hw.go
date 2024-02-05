@@ -1,9 +1,9 @@
 package hw
 
 import (
-	"github.com/muka/go-bluetooth/hw/linux"
-	"github.com/muka/go-bluetooth/hw/linux/btmgmt"
-	"github.com/muka/go-bluetooth/hw/linux/hciconfig"
+	"github.com/aeterlink-dev/go-bluetooth/hw/linux"
+	"github.com/aeterlink-dev/go-bluetooth/hw/linux/btmgmt"
+	"github.com/aeterlink-dev/go-bluetooth/hw/linux/hciconfig"
 )
 
 func GetAdapter(adapterID string) (a linux.AdapterInfo, err error) {

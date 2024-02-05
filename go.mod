@@ -1,4 +1,4 @@
-module github.com/muka/go-bluetooth
+module github.com/aeterlink-dev/go-bluetooth
 
 go 1.14
 

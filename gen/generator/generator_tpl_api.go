@@ -6,8 +6,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/muka/go-bluetooth/gen/override"
-	"github.com/muka/go-bluetooth/gen/types"
+	"github.com/aeterlink-dev/go-bluetooth/gen/override"
+	"github.com/aeterlink-dev/go-bluetooth/gen/types"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -22,7 +22,7 @@ func ApiTemplate(filename string, api *types.Api, apiGroup *types.ApiGroup) erro
 
 	imports := []string{
 		"sync",
-		"github.com/muka/go-bluetooth/bluez",
+		"github.com/aeterlink-dev/go-bluetooth/bluez",
 	}
 
 	// Expose Properties interface ?
@@ -33,8 +33,8 @@ func ApiTemplate(filename string, api *types.Api, apiGroup *types.ApiGroup) erro
 			// "log github.com/sirupsen/logrus",
 			// "reflect",
 			// "github.com/fatih/structs",
-			"github.com/muka/go-bluetooth/util",
-			"github.com/muka/go-bluetooth/props",
+			"github.com/aeterlink-dev/go-bluetooth/util",
+			"github.com/aeterlink-dev/go-bluetooth/props",
 		}
 		imports = append(imports, propsImports...)
 	}
